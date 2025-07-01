@@ -1,0 +1,18 @@
+name: Schedule SMS Job
+
+on:
+  schedule:
+    - cron: '*/1 * * * *'
+  workflow_dispatch:
+
+jobs:
+  call-sms-cron:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call protected /api/sms-cron endpoint
+        run: |
+          curl -X POST \
+            -H "Authorization: Bearer ${{ secrets.SMS_CRON_SECRET }}" \
+            -H "Content-Type: application/json" \
+            --fail \
+            https://book-my-show-new-feature-k5lj17qbg-mnms-projects-abb3f162.vercel.app/api/sms-cron

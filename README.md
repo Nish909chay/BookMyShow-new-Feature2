@@ -173,6 +173,12 @@ This project is for learning and experimentation purposes only. Not affiliated w
 
 ## Schema
 ![App Preview](./schema.png)
+
+##  System Architecture
+![App Preview](./User Flow.png)
+![App Preview](./jobScheduling.png)
+![App Preview](./smsDelivery.png)
+
 ---
 
 ##  Testing & Verification

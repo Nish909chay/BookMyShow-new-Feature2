@@ -135,39 +135,41 @@ This project is for learning and experimentation purposes only. Not affiliated w
 ##  System Design 
 
 <table>
-  <tr>
-    <th>What BookMyShow Would Need to Implement Such a Service</th>
-    <th>My System Design</th>
-  </tr>
-  <tr>
-    <td style="vertical-align:top; min-width:240px;">
-      <ul>
-  <li><strong>Distributed Message Queue</strong>: Use Amazon SQS, Apache Kafka, or Google Pub/Sub to enqueue SMS jobs with retries, visibility timeouts, and scalability.</li>
-  <li><strong>Dedicated Job Workers</strong>: Deploy background services in Node.js, Go, or Java (on AWS Lambda, ECS, or Kubernetes) that poll queues and send SMS via Twilio or in-house gateways.</li>
-  <li><strong>Reliable Task Scheduling</strong>: Replace GitHub Actions with Temporal, Quartz, Celery, or AWS EventBridge for robust, fault-tolerant, production-grade scheduling.</li>
-  <li><strong>Rate Limiting & Throttling</strong>: Prevent abuse by limiting API usage per user/IP using API Gateway + Redis counters or WAFs at the CDN layer.</li>
-  <li><strong>Phone Number Verification</strong>: Use OTP-based verification before allowing reminder scheduling to prevent spam and reduce SMS cost.</li>
-  <li><strong>Logging & Monitoring</strong>: Use Prometheus, Grafana, New Relic, or Datadog for observability; stream logs to ELK or CloudWatch for debugging and audit.</li>
-  <li><strong>Configurable Reminders</strong>: Let users pick when they want reminders (e.g., 1 hour, 3 hours) and dynamically schedule based on showtime.</li>
-  <li><strong>User Preferences DB</strong>: Store reminder preferences and subscriptions in PostgreSQL, Aurora, or DynamoDB for reliable data access.</li>
-  <li><strong>Multi-Gateway SMS Failover</strong>: Integrate multiple SMS vendors (e.g., Twilio, MSG91, Kaleyra) and add fallback logic if one provider fails.</li>
-  <li><strong>Admin Dashboard</strong>: Build an internal tool to view, edit, or cancel reminder jobs, and monitor SMS delivery and logs.</li>
-  <li><strong>Scalable API Infrastructure</strong>: Host APIs behind load balancers using autoscaling containers or serverless functions, with Redis/CDN caching for high traffic.</li>
-  <li><strong>Security & Abuse Protection</strong>: Sanitize inputs, require authentication, add captchas, enforce API gateway protection, and block abusive IPs.</li>
-</ul>
-
-    </td>
-    <td style="vertical-align:top;">
-      <ul>
-        <li><strong>Enterprise-grade SMS pipeline</strong>: <code>GitHub Actions</code> as CRON trigger</li>
-        <li><strong>Persistent message queue (e.g., Kafka)</strong>: <code>Redis</code> (initially attempted with Upstash)</li>
-        <li><strong>Scalable job scheduler</strong>: <code>GitHub Actions</code> (every 1 min)</li>
-        <li><strong>Fault tolerance, retry logic</strong>: Basic validation and logging</li>
-      </ul>
-    </td>
-  </tr>
+  <thead>
+    <tr>
+      <th>What BookMyShow Would Need to Implement Such a Service</th>
+      <th>My System Design</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="vertical-align:top; min-width:320px;">
+        <ul>
+          <li><strong>Distributed Message Queue</strong>: Use Amazon SQS, Apache Kafka, or Google Pub/Sub to enqueue SMS jobs with retries, visibility timeouts, and scalability.</li>
+          <li><strong>Dedicated Job Workers</strong>: Deploy background services in Node.js, Go, or Java (on AWS Lambda, ECS, or Kubernetes) that poll queues and send SMS via Twilio or in-house gateways.</li>
+          <li><strong>Reliable Task Scheduling</strong>: Replace GitHub Actions with Temporal, Quartz, Celery, or AWS EventBridge for robust, fault-tolerant, production-grade scheduling.</li>
+          <li><strong>Rate Limiting & Throttling</strong>: Prevent abuse by limiting API usage per user/IP using API Gateway + Redis counters or WAFs at the CDN layer.</li>
+          <li><strong>Phone Number Verification</strong>: Use OTP-based verification before allowing reminder scheduling to prevent spam and reduce SMS cost.</li>
+          <li><strong>Logging & Monitoring</strong>: Use Prometheus, Grafana, New Relic, or Datadog for observability; stream logs to ELK or CloudWatch for debugging and audit.</li>
+          <li><strong>Configurable Reminders</strong>: Let users pick when they want reminders (e.g., 1 hour, 3 hours) and dynamically schedule based on showtime.</li>
+          <li><strong>User Preferences DB</strong>: Store reminder preferences and subscriptions in PostgreSQL, Aurora, or DynamoDB for reliable data access.</li>
+          <li><strong>Multi-Gateway SMS Failover</strong>: Integrate multiple SMS vendors (e.g., Twilio, MSG91, Kaleyra) and add fallback logic if one provider fails.</li>
+          <li><strong>Admin Dashboard</strong>: Build an internal tool to view, edit, or cancel reminder jobs, and monitor SMS delivery and logs.</li>
+          <li><strong>Scalable API Infrastructure</strong>: Host APIs behind load balancers using autoscaling containers or serverless functions, with Redis/CDN caching for high traffic.</li>
+          <li><strong>Security & Abuse Protection</strong>: Sanitize inputs, require authentication, add captchas, enforce API gateway protection, and block abusive IPs.</li>
+        </ul>
+      </td>
+      <td style="vertical-align:top; min-width:220px;">
+        <ul>
+          <li><strong>Enterprise-grade SMS pipeline</strong>: <code>GitHub Actions</code> as CRON trigger</li>
+          <li><strong>Persistent message queue (e.g., Kafka)</strong>: <code>Redis</code> (initially attempted with Upstash)</li>
+          <li><strong>Scalable job scheduler</strong>: <code>GitHub Actions</code> (every 1 min)</li>
+          <li><strong>Fault tolerance, retry logic</strong>: Basic validation and logging</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
 </table>
-
 ---
 
 ##  Testing & Verification

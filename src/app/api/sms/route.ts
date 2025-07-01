@@ -8,13 +8,11 @@ const fromPhone = process.env.TWILIO_PHONE!;
 const client = twilio(accountSid, authToken);
 
 function capitalizeFirstLetter(str: string) {
-  if (!str) return '';
-  return str.charAt(0).toUpperCase() + str.slice(1);
+  return str ? str.charAt(0).toUpperCase() + str.slice(1) : '';
 }
 
 function isValidIndianPhone(phone: string) {
-  // Only 10 digits, starts with 6-9
-  return /^[6-9]\d{9}$/.test(phone);
+  return /^[6-9]\d{9}$/.test(phone); // Indian 10-digit starting with 6-9
 }
 
 export async function POST(req: NextRequest) {
@@ -35,22 +33,16 @@ export async function POST(req: NextRequest) {
     const capitalized = capitalizeFirstLetter(name.trim());
     const message = `Dear ${capitalized},\nBe ready for your movie!\nBe at the theatre in 3 hours 😉\n(Only if BookMyShow had me in their team, they would have had this feature long ago.)`;
 
-    setTimeout(async () => {
-      try {
-        await client.messages.create({
-          body: message,
-          from: fromPhone,
-          to: `+91${phone}`,
-        });
-      } catch (err) {
-        // Log error for debugging
-        console.error('Twilio SMS error:', err);
-      }
-    }, 60 * 1000);
+    const twilioRes = await client.messages.create({
+      body: message,
+      from: fromPhone,
+      to: `+91${phone}`,
+    });
 
-    console.log(`Expect an SMS in a minute to the phone number: ${phone}.`);
-    return NextResponse.json({ message: 'SMS scheduled successfully' }, { status: 200 });
-  } catch (err) {
+    console.log(`✅ SMS sent to: +91${phone}`, twilioRes.sid);
+    return NextResponse.json({ message: 'SMS sent successfully' }, { status: 200 });
+  } catch (err: any) {
+    console.error('❌ Twilio SMS Error:', err);
     return NextResponse.json({ error: 'Failed to send SMS' }, { status: 500 });
   }
 }

@@ -1,6 +1,6 @@
-#  BookMyShow Home Page Clone + SMS Reminder Feature
+#  BookMyShow SMS Reminder Feature
 
-This is a **modern clone of the BookMyShow home page**, built with a focus on real-world learning, UI replication, and backend feature development. On top of the core UI, I added a **“Remind Me” SMS feature** that lets users schedule a message after they click on a movie—just like a smart ticketing assistant.
+This is a **modern clone of the BookMyShow **, built with a focus on real-world learning, UI replication, and backend feature development. On top of the core UI, I added a **“Remind Me” SMS feature** that lets users schedule a message after they click on a movie—just like a smart ticketing assistant.
 
 The goal wasn’t just to copy the UI, but to **integrate full-stack features** using modern tools and deploy them like a real-world project.
 

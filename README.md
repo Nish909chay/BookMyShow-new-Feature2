@@ -2,11 +2,28 @@
 
 ## 🧠 Design Evolution
 
-| Attempt                     | Description                                                            |
-|-----------------------------|------------------------------------------------------------------------|
-| **Instant SMS (In-Memory)** | Initial logic using `setTimeout` to delay SMS by 1 min; not production safe |
-| **Redis + Cron (Upstash)**  | Attempted Redis queue with Upstash and Vercel cron — not supported on free tier |
-| **GitHub Actions**          | Final working system uses GitHub Actions every minute to trigger `/api/sms-cron` via secure endpoint |
+<table>
+  <thead>
+    <tr>
+      <th>Attempt</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Instant SMS (In-Memory)</strong></td>
+      <td>Initial logic using <code>setTimeout</code> to delay SMS by 1 min; not production safe</td>
+    </tr>
+    <tr>
+      <td><strong>Redis + Cron (Upstash)</strong></td>
+      <td>Attempted Redis queue with Upstash and Vercel cron — not supported on free tier</td>
+    </tr>
+    <tr>
+      <td><strong>GitHub Actions</strong></td>
+      <td>Final working system uses GitHub Actions every minute to trigger <code>/api/sms-cron</code> via secure endpoint</td>
+    </tr>
+  </tbody>
+</table>
 
 ---
 

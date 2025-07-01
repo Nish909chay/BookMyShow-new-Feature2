@@ -8,5 +8,11 @@
       },
       "dest": "/api/sms"
     }
+  ],
+  "cron": [
+    {
+      "path": "/api/send-due-sms",
+      "schedule": "*/1 * * * *"
+    }
   ]
 }

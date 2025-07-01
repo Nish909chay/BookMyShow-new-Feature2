@@ -12,7 +12,7 @@ function capitalizeFirstLetter(str: string) {
 }
 
 function isValidIndianPhone(phone: string) {
-  return /^[6-9]\d{9}$/.test(phone); // Indian 10-digit starting with 6-9
+  return /^[6-9]\d{9}$/.test(phone);
 }
 
 export async function POST(req: NextRequest) {
@@ -41,8 +41,8 @@ export async function POST(req: NextRequest) {
 
     console.log(`✅ SMS sent to: +91${phone}`, twilioRes.sid);
     return NextResponse.json({ message: 'SMS sent successfully' }, { status: 200 });
-  } catch (err: any) {
-    console.error('❌ Twilio SMS Error:', err);
+  } catch (err) {
+    console.error('❌ Twilio SMS Error:', (err as Error).message);
     return NextResponse.json({ error: 'Failed to send SMS' }, { status: 500 });
   }
 }

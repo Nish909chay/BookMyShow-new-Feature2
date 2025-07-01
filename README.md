@@ -171,6 +171,8 @@ This project is for learning and experimentation purposes only. Not affiliated w
   </tbody>
 </table>
 
+## Schema
+![App Preview](./schema.png)
 ---
 
 ##  Testing & Verification

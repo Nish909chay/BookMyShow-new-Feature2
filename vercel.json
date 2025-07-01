@@ -1,0 +1,12 @@
+{
+  "routes": [
+    {
+      "src": "/api/sms",
+      "methods": ["POST"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      },
+      "dest": "/api/sms"
+    }
+  ]
+}
